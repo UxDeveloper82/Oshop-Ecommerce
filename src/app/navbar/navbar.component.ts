@@ -7,9 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  user: firebase.User;
 
   constructor(private afAuth: AngularFireAuth) {
-  afAuth.authState.subscribe(x => console.log(x));
+    afAuth.authState.subscribe(user => this.user = user);
   }
   logout() {
     this.afAuth.auth.signOut();
